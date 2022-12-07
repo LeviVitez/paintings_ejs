@@ -17,6 +17,12 @@ export class AppController {
     };
   }
 
+  @Get('paintings/new')
+  @Render('from')
+  newPaintingForm() {
+    return {};
+  }
+
   @Get('paintings/:id')
   @Render('show')
   async showPainting(@Param('id') id: number) {
