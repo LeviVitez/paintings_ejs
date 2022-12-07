@@ -16,7 +16,12 @@
         <tr>
             <td><%= paintings.title %></td>
             <td><%= paintings.year %></td>
-            <td><%= paintings.on_display %></td>
+            <td><% if (paintings.on_display) { %>
+                    On display
+                <% } else { %>
+                    Not on display
+                <% } %>
+            </td>
         </tr>
     </table>
 </body>
