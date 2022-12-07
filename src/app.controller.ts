@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Query } from '@nestjs/common';
+import { Controller, Get, Render, Query, Param } from '@nestjs/common';
 import db from './db';
 
 @Controller()
@@ -16,4 +16,15 @@ export class AppController {
       paintings: rows,
     };
   }
+
+  @Get('paintings/:id')
+  @Render('show')
+  async showPainting(@Param('id') id: number) {
+    const [ rows ] = await db.execute(
+      'SELECT title, year, on_display FROM paintings WHERE id = ?',
+      [ id ]
+    );
+    return { painting: rows[0] };
+  }
 }
+
